@@ -1,135 +1,83 @@
 ﻿using System;
 using CoreGraphics;
 
-namespace Xamarin.Material.Components.Math
+namespace Xamarin.Material.Components.MaterialMath
 {
     public static class MDCMath
     {
         public static nfloat MDCSin(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return sin(value);
-#else
-            return Sin(value);
-#endif
+            return (nfloat)Math.Sin(value);
         }
 
         static nfloat MDCCos(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return cos(value);
-#else
-            return cosf(value);
-#endif
+            return (nfloat)Math.Cos(value);
         }
 
-        static nfloat MDCAtan2(nfloat y, nfloat x)
+        public static nfloat MDCAtan2(nfloat y, nfloat x)
         {
-#if CGFLOAT_IS_DOUBLE
-  return atan2(y, x);
-#else
-            return atan2f(y, x);
-#endif
+            return (nfloat)Math.Atan2(y, x);
         }
 
-        static nfloat MDCCeil(nfloat value)
+        public static nfloat MDCCeil(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return ceil(value);
-#else
-            return ceilf(value);
-#endif
+            return (nfloat)Math.Ceiling(value);
         }
 
-        static nfloat MDCFabs(nfloat value)
+        public static nfloat MDCFabs(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return fabs(value);
-#else
-            return fabsf(value);
-#endif
+            return (nfloat)Math.Abs(value);
         }
 
-        static nfloat MDCDegreesToRadians(nfloat degrees)
+        public static nfloat MDCDegreesToRadians(nfloat degrees)
         {
-#if CGFLOAT_IS_DOUBLE
-  return degrees * (CGFloat)M_PI / 180.0;
-#else
-            return degrees * (nfloat)M_PI / 180.f;
-#endif
+            return degrees * (nfloat)Math.PI / 180.0f;
         }
 
-        static bool MDCCGFloatEqual(nfloat a, nfloat b)
+        public static bool MDCCGFloatEqual(nfloat a, nfloat b)
         {
-            const nfloat constantK = 3;
-#if CGFLOAT_IS_DOUBLE
-  const CGFloat epsilon = DBL_EPSILON;
-  const CGFloat min = DBL_MIN;
-#else
-            const nfloat epsilon = FLT_EPSILON;
-            const nfloat min = FLT_MIN;
-#endif
+            nfloat constantK = 3;
+            nfloat epsilon = Single.Epsilon;
+            nfloat min = Single.MinValue;
+
             return (MDCFabs(a - b) < constantK * epsilon * MDCFabs(a + b) || MDCFabs(a - b) < min);
         }
 
-        static CGFloat MDCFloor(nfloat value)
+        public static nfloat MDCFloor(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return floor(value);
-#else
-            return floorf(value);
-#endif
+            return (nfloat)Math.Floor(value);
         }
 
-        static nfloat MDCHypot(nfloat x, nfloat y)
+        public static nfloat MDCHypot(nfloat x, nfloat y)
         {
-#if CGFLOAT_IS_DOUBLE
-  return hypot(x, y);
-#else
-            return hypotf(x, y);
-#endif
+            return (nfloat)Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)); 
         }
 
         // Checks whether the provided floating point number is exactly zero.
-        static bool MDCCGFloatIsExactlyZero(nfloat value)
+        public static bool MDCCGFloatIsExactlyZero(nfloat value)
         {
             return (System.Math.Abs(value) < Single.Epsilon);
         }
 
-        static nfloat MDCPow(nfloat value, nfloat power)
+        public static nfloat MDCPow(nfloat value, nfloat power)
         {
-#if CGFLOAT_IS_DOUBLE
-  return pow(value, power);
-#else
-            return powf(value, power);
-#endif
+            return (nfloat)Math.Pow(value, power);
         }
 
-        static nfloat MDCRint(nfloat value)
+        public static nfloat MDCRint(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return rint(value);
-#else
-            return rintf(value);
-#endif
+            return (nfloat)Math.Round(value);
         }
 
-        static nfloat MDCRound(nfloat value)
+        public static nfloat MDCRound(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return round(value);
-#else
-            return roundf(value);
-#endif
+            return (nfloat)Math.Round(value);
         }
 
-        static nfloat MDCSqrt(nfloat value)
+        public static nfloat MDCSqrt(nfloat value)
         {
-#if CGFLOAT_IS_DOUBLE
-  return sqrt(value);
-#else
-            return Sqrtf(value);
-#endif
+            return (nfloat)Math.Sqrt(value);
         }
 
         /***
@@ -143,11 +91,11 @@ namespace Xamarin.Material.Components.Math
 
          @see CGRectIntegral
          */
-        static CGRect MDCRectAlignToScale(CGRect rect, nfloat scale)
+        public static CGRect MDCRectAlignToScale(CGRect rect, nfloat scale)
         {
-            if (CGRectIsNull(rect))
+            if (rect.IsNull())
             {
-                return CGRectNull;
+                return CGRect.Null;
             }
             if (MDCCGFloatEqual(scale, 0))
             {
@@ -156,30 +104,30 @@ namespace Xamarin.Material.Components.Math
 
             if (MDCCGFloatEqual(scale, 1))
             {
-                return CGRectIntegral(rect);
+                return rect.Integral();
             }
 
-            CGPoint originalMinimumPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
-            CGPoint newOrigin = CGPointMake(MDCFloor(originalMinimumPoint.x * scale) / scale,
-                                            MDCFloor(originalMinimumPoint.y * scale) / scale);
+            CGPoint originalMinimumPoint = new CGPoint(rect.GetMinX(), rect.GetMinY());
+            CGPoint newOrigin = new CGPoint(MDCFloor(originalMinimumPoint.X * scale) / scale,
+                                            MDCFloor(originalMinimumPoint.Y * scale) / scale);
             CGSize adjustWidthHeight =
-                CGSizeMake(originalMinimumPoint.x - newOrigin.x, originalMinimumPoint.y - newOrigin.y);
-            return CGRectMake(newOrigin.x, newOrigin.y,
-                              MDCCeil((CGRectGetWidth(rect) + adjustWidthHeight.width) * scale) / scale,
-                              MDCCeil((CGRectGetHeight(rect) + adjustWidthHeight.height) * scale) / scale);
+                new CGSize(originalMinimumPoint.X - newOrigin.X, originalMinimumPoint.Y - newOrigin.Y);
+            return new CGRect(newOrigin.X, newOrigin.Y,
+                              MDCCeil((rect.Width + adjustWidthHeight.Width) * scale) / scale,
+                              MDCCeil((rect.Height + adjustWidthHeight.Height) * scale) / scale);
         }
 
-        static CGPoint MDCPointRoundWithScale(CGPoint point, nfloat scale)
+        public static CGPoint MDCPointRoundWithScale(CGPoint point, nfloat scale)
         {
             if (MDCCGFloatEqual(scale, 0))
             {
-                return CGPointZero;
+                return CGPoint.Empty;
             }
 
-            return CGPointMake(MDCRound(point.x * scale) / scale, MDCRound(point.y * scale) / scale);
+            return new CGPoint(MDCRound(point.X * scale) / scale, MDCRound(point.Y * scale) / scale);
         }
 
-        /**
+        /***
          Expand `size' to the closest larger pixel-aligned value.
          If @c scale is zero, then a CGSizeZero will be returned.
 
@@ -188,17 +136,17 @@ namespace Xamarin.Material.Components.Math
 
          @return the size aligned to the closest larger pixel-aligned value using the provided scale factor.
          */
-        static CGSize MDCSizeCeilWithScale(CGSize size, nfloat scale)
+        public static CGSize MDCSizeCeilWithScale(CGSize size, nfloat scale)
         {
             if (MDCCGFloatEqual(scale, 0))
             {
-                return CGSizeZero;
+                return CGSize.Empty;
             }
 
-            return CGSizeMake(MDCCeil(size.Width * scale) / scale, MDCCeil(size.Height * scale) / scale);
+            return new CGSize(MDCCeil(size.Width * scale) / scale, MDCCeil(size.Height * scale) / scale);
         }
 
-        /**
+        /***
          Align the centerPoint of a view so that its origin is pixel-aligned to the nearest pixel.
          Returns @c CGRectZero if @c scale is zero or @c bounds is @c CGRectNull.
 
@@ -208,20 +156,20 @@ namespace Xamarin.Material.Components.Math
 
          @return the center point of the view such that its origin will be pixel-aligned.
          */
-        static CGPoint MDCRoundCenterWithBoundsAndScale(CGPoint center,
+        public static CGPoint MDCRoundCenterWithBoundsAndScale(CGPoint center,
                                                                CGRect bounds,
                                                         nfloat scale)
         {
-            if (MDCCGFloatEqual(scale, 0) || CGRectIsNull(bounds))
+            if (MDCCGFloatEqual(scale, 0) || bounds.IsNull())
             {
-                return CGPointZero;
+                return CGPoint.Empty;
             }
 
-            nfloat halfWidth = CGRectGetWidth(bounds) / 2;
-            nfloat halfHeight = CGRectGetHeight(bounds) / 2;
-            CGPoint origin = CGPointMake(center.x - halfWidth, center.y - halfHeight);
+            nfloat halfWidth = bounds.Width / 2;
+            nfloat halfHeight = bounds.Height / 2;
+            CGPoint origin = new CGPoint(center.X - halfWidth, center.Y - halfHeight);
             origin = MDCPointRoundWithScale(origin, scale);
-            return CGPointMake(origin.X + halfWidth, origin.Y + halfHeight);
+            return new CGPoint(origin.X + halfWidth, origin.Y + halfHeight);
         }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -7,7 +8,7 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Xamarin.Material.Components</RootNamespace>
-    <AssemblyName>Xamarin.Material.Components.iOS</AssemblyName>
+    <AssemblyName>Xamarin.Material.Components</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -43,7 +44,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="components\Buttons\MDCButton.cs" />
+    <Compile Include="components\Ink\MDCInkView.cs" />
+    <Compile Include="components\Ink\MDCInkLayer.cs" />
+    <Compile Include="components\Ink\IMDCInkLayerDelegate.cs" />
+    <Compile Include="components\Math\MDCMath.cs" />
+    <Compile Include="components\Ink\Legacy\MDCLegacyInkLayer.cs" />
+    <Compile Include="components\Ink\Legacy\MDCLegacyInkLayerForegroundRipple.cs" />
+    <Compile Include="components\Ink\Legacy\MDCLegacyInkLayerRipple.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="components\" />
+    <Folder Include="components\Ink\" />
+    <Folder Include="components\Math\" />
+    <Folder Include="components\Ink\Legacy\" />
   </ItemGroup>
   <Import Project="..\Xamarin.Material.Components.Shared\Xamarin.Material.Components.Shared.projitems" Label="Shared" Condition="Exists('..\Xamarin.Material.Components.Shared\Xamarin.Material.Components.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
 </Project>
