@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xamarin.Material.Components.Shared", "Xamarin.Material.Components.Shared\Xamarin.Material.Components.Shared.shproj", "{D79904AC-FA2F-4843-A44E-E0C41E454378}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Material.Components.iOS", "Xamarin.Material.Components.iOS\Xamarin.Material.Components.iOS.csproj", "{5ECA14CB-7BAC-49D1-9713-6C629269DE75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Material.Components.Android", "Xamarin.Material.Components.Android\Xamarin.Material.Components.Android.csproj", "{2490AB64-53CF-43FA-AA1D-C55D390DDE3D}"
+EndProject
+Project("{5DD5E4FA-CB73-4610-85AB-557B54E96AA9}") = "Xamarin.Material.Components.NuGet", "Xamarin.Material.Components.NuGet\Xamarin.Material.Components.NuGet.nuproj", "{3AB0BC32-FBE8-4EDF-8493-43C81DC8905A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ECA14CB-7BAC-49D1-9713-6C629269DE75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ECA14CB-7BAC-49D1-9713-6C629269DE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ECA14CB-7BAC-49D1-9713-6C629269DE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ECA14CB-7BAC-49D1-9713-6C629269DE75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2490AB64-53CF-43FA-AA1D-C55D390DDE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2490AB64-53CF-43FA-AA1D-C55D390DDE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2490AB64-53CF-43FA-AA1D-C55D390DDE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2490AB64-53CF-43FA-AA1D-C55D390DDE3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB0BC32-FBE8-4EDF-8493-43C81DC8905A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB0BC32-FBE8-4EDF-8493-43C81DC8905A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB0BC32-FBE8-4EDF-8493-43C81DC8905A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB0BC32-FBE8-4EDF-8493-43C81DC8905A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.props" Condition="Exists('$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AB0BC32-FBE8-4EDF-8493-43C81DC8905A}</ProjectGuid>
+    <Description>Xamarin.Material.Components</Description>
+    <PackageId>Xamarin.Material.Components</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>cprice</Authors>
+    <DevelopmentDependency>false</DevelopmentDependency>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Xamarin.Material.Components</RootNamespace>
+    <UsePartialTypes>false</UsePartialTypes>
+    <AssemblyName>Xamarin.Material.Components.NuGet</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Material.Components.Android\Xamarin.Material.Components.Android.csproj">
+      <Project>{2490AB64-53CF-43FA-AA1D-C55D390DDE3D}</Project>
+      <Name>Xamarin.Material.Components.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xamarin.Material.Components.iOS\Xamarin.Material.Components.iOS.csproj">
+      <Project>{5ECA14CB-7BAC-49D1-9713-6C629269DE75}</Project>
+      <Name>Xamarin.Material.Components.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.targets" Condition="Exists('$(NuGetAuthoringPath)\NuGet.Packaging.Authoring.targets')" />
+</Project>
